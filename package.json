@@ -5,32 +5,43 @@
   "author": "GLDUO <619953679@qq.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config webpack/webpack.config.js --progress --display-modules --color",
-    "start": "node webpack/dev-server.js",
-    "dev": "webpack-dev-server --config webpack/webpack.config.js"
+    "build": "cross-env NODE_ENV=development webpack --config webpack/webpack.config.js --progress --display-modules --color",
+    "start": "cross-env NODE_ENV=development node webpack/dev-server.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack/webpack.config.js"
   },
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-intl": "^2.4.0",
     "redux": "^3.7.2"
   },
   "devDependencies": {
     "@types/node": "^9.4.7",
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
-    "@types/react-hot-loader": "^3.0.6",
+    "@types/react-intl": "^2.3.5",
+    "@types/webpack": "3.0.0",
+    "@types/webpack-env": "^1.13.5",
     "autoprefixer": "^6.3.6",
+    "awesome-typescript-loader": "3.1.2",
+    "babel-core": "^6.24.0",
+    "babel-loader": "6.4.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.22.0",
     "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.1.4",
     "css-loader": "^0.28.10",
     "html-webpack-plugin": "^3.0.6",
     "less": "^2.6.0",
     "less-loader": "^4.1.0",
-    "react-hot-loader": "3.0.0",
+    "react-hot-loader": "3.1.3",
     "style-loader": "^0.20.3",
     "ts-loader": "3.0.4",
     "typescript": "2.3.0",
     "uglifyjs-webpack-plugin": "^1.2.3",
-    "webpack": "2.2.0",
-    "webpack-dev-server": "2.2.0"
+    "webpack": "3.10.0",
+    "webpack-dev-server": "2.11.0"
   }
 }

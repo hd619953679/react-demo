@@ -1,12 +1,11 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
         "sourceMap": true,
+        "noImplicitAny": false,
+        "module": "commonjs",
         "target": "es5",
-        "jsx": "react"
+        "jsx": "react",
+        "lib": ["es5", "es6", "dom"]
     },
     "include": [
         "src/**/*"
