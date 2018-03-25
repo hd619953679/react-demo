@@ -2,6 +2,7 @@ const path = require("path");
 const Config = require("./config");
 const plugin = require("./plugin");
 const isProd = process.env.NODE_ENV === "production";
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const entryMain = !isProd
   ? [
       "react-hot-loader/patch",
@@ -36,9 +37,37 @@ module.exports = {
         ],
         exclude: /node_modules/
       },
-      // { test: /\.tsx?$/, loaders: ['react-hot-loader/webpack', 'awesome-typescript-loader'] },
-      // { test: /\.ts?$/, loaders: ['ts-loader'] },
-      { test: /\.less$/, use: ["style-loader", "css-loader", "less-loader"] }
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: ["css-loader", "autoprefixer-loader", "less-loader"]
+        })
+      },
+      {
+        test: /\.module.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            {
+              loader: "typings-for-css-modules-loader",
+              options: {
+                modules: true,
+                namedExport: true,
+                camelCase: true,
+                minimize: true,
+                localIdentName: "[local]_[hash:base64:5]"
+              }
+            },
+            "autoprefixer-loader",
+            "less-loader"
+          ]
+        })
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: "url-loader?limit=8192&name=asset/images/[hash:8].[name].[ext]"
+      }
     ]
   },
   resolve: {

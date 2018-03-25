@@ -2,7 +2,9 @@ const htmlWebpackPlugin = require("html-webpack-plugin");
 const cleanWebpackPlugin = require("clean-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
+const Config = require('./config.js');
 const uglifyjsWebpackPlugin = require("uglifyjs-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const isProd = process.env.NODE_ENV === "production";
 
 const basePlugin = [
@@ -13,7 +15,8 @@ const basePlugin = [
     minify: {
       removeComments: true
     }
-  })
+  }),
+  new ExtractTextPlugin(`main_${Config.version}.css`)
 ];
 let addPlugin;
 if (!isProd) {

@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
-import { SearchBox } from "./component/searchBox/searchBox";
-import { addLocaleData, IntlProvider, FormattedMessage } from "react-intl";
+import { addLocaleData, IntlProvider } from "react-intl";
+import App from './view/app';
 import * as zh from "react-intl/locale-data/zh";
 import * as en from "react-intl/locale-data/en";
 import zh_CN from "./locale/zh";
@@ -16,7 +16,7 @@ const root = document.getElementById("app");
 const render = (Component: any) => {
   ReactDOM.render(
     <AppContainer>
-      <IntlProvider locale="zh" messages={messages["zh_CN"]}>
+      <IntlProvider locale="en" messages={messages["en"]}>
         <Component />
       </IntlProvider>
     </AppContainer>,
@@ -24,10 +24,10 @@ const render = (Component: any) => {
   );
 };
 
-render(SearchBox);
+render(App);
 if (module.hot) {
-  module.hot.accept("./component/searchBox/searchBox", () => {
-    const NewRoot = require("./component/searchBox/searchBox").default;
+  module.hot.accept("./view/app", () => {
+    const NewRoot = require("./view/app").default;
     render(NewRoot);
   });
 }
